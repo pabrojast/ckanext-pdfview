@@ -41,7 +41,8 @@ class PDFView(p.SingletonPlugin):
 
         # Verifica si la URL necesita redirigirse al Blob Storage
         if is_valid_domain(resource["url"]):
-            upload = p.toolkit.get_action('resource_uploader')(context, resource)
+            from ckan.lib import uploader
+            upload = uploader.get_resource_uploader(resource)
             resource_view['pdf_url'] = upload.get_url_from_filename(resource['id'], resource['url'])
         else:
             resource_view['pdf_url'] = resource.get("url")
