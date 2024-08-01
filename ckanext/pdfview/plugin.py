@@ -46,13 +46,12 @@ class PDFView(p.SingletonPlugin):
             print(resource["url"])
             upload = uploader.get_resource_uploader(resource)
             resource_view['pdf_url'] = upload.get_url_from_filename(resource['id'], resource['url'])
+            resource["url"] = resource_view['pdf_url']
             print("pdf_url")
             print(resource_view.get('pdf_url'))
             print('url')
             print(resource.get('url') )
             
-        else:
-            resource_view['pdf_url'] = resource.get("url")
                     
         return "pdf_view.html"
 
