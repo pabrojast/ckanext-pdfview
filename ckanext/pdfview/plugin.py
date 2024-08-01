@@ -16,6 +16,7 @@ class PDFView(p.SingletonPlugin):
 
     def update_config(self, config):
         p.toolkit.add_template_directory(config, "theme/templates")
+        p.toolkit.add_public_directory(config, "public")
 
     def info(self):
         return {
@@ -31,28 +32,7 @@ class PDFView(p.SingletonPlugin):
     def can_view(self, data_dict):
         return data_dict["resource"].get("format", "").lower() == "pdf"
 
-    def view_template(self, context, data_dict):
-        
-        def is_valid_domain(url):
-            return url.startswith('https://data.dev-wins.com') or url.startswith('https://ihp-wins.unesco.org/')
-        
-        resource = data_dict["resource"]
-        resource_view = data_dict["resource_view"]
-
-        # Verifica si la URL necesita redirigirse al Blob Storage
-        if is_valid_domain(resource["url"]):
-            from ckan.lib import uploader
-            print(resource)
-            print(resource["url"])
-            upload = uploader.get_resource_uploader(resource)
-            resource_view['pdf_url'] = upload.get_url_from_filename(resource['id'], resource['url'])
-            resource["url"] = resource_view['pdf_url']
-            print("pdf_url")
-            print(resource_view.get('pdf_url'))
-            print('url')
-            print(resource.get('url') )
-            
-                    
+    def view_template(self, context, data_dict):                   
         return "pdf_view.html"
 
     def form_template(self, context, data_dict):
