@@ -1,3 +1,6 @@
-<object style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block" data="{{ h.url_for('/', _external=True) }}pdfjs/web/viewer.html?file={{ resource_view.get('pdf_url') or resource.get('url') }}?preview=1" type="application/pdf">
-	<p>{{ _('Your browser does not support object tags.') }}</p>
-</object>
+<iframe 
+    src="{{ h.url_for('/', _external=True) }}pdfjs/web/viewer.html?file={{ resource_view.get('pdf_url') or resource.get('url') }}?preview=1" 
+    style="margin:auto; max-height:100%; min-height:100vh; min-width:100%; display:block;" 
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
