@@ -29,7 +29,7 @@
 ckanext-pdfview
 ===============
 
-This extension provides a view plugin for PDF files using an `html object tag <https://www.w3schools.com/tags/tag_object.asp>`_.
+This extension provides a view plugin for PDF files using an iframe with https://github.com/mozilla/pdf.js in the plubic folder of the plugin.
 
 ------------
 Requirements
